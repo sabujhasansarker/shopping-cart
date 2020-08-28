@@ -1,30 +1,70 @@
 import React, { useContext } from "react";
 import ShoppingContext from "../context/ShoppingContext";
+import { Link } from "react-router-dom";
 
 const Card = () => {
-  const { cards, cardItems, removeItem } = useContext(ShoppingContext);
+  const { cards, cardItems, removeItem, quantity, price } = useContext(
+    ShoppingContext
+  );
   return (
-    <div>
-      <h1>Card</h1>
-      {cards.length > 0
-        ? cards.map((card) => (
-            <div className="card" key={card.id}>
-              <img src={card.image} alt="" />
-              <div className="content">
-                <h4>{card.name}</h4>
-                <p>
-                  <span onClick={() => cardItems(cards, card, "+")}>+</span>
-                  <span>{card.qn}</span>
-                  <span onClick={() => cardItems(cards, card, "-")}>-</span>
-                </p>
-                <button onClick={() => removeItem(card)}>Remove</button>
-                <p>
-                  Price : {card.qn + "X" + card.price} ${card.qn * card.price}
-                </p>
+    <div className="carts-container">
+      <div className="carts">
+        {cards.length > 0
+          ? cards.map((card) => (
+              <div className="cart" key={card.id}>
+                <img src={card.image} alt="" />
+                <div className="content">
+                  <Link className="name" to={`/product-${card.id}`}>
+                    {card.name}
+                  </Link>
+                  <p className="action-container">
+                    <span
+                      className="action"
+                      onClick={() => cardItems(cards, card, "+")}
+                    >
+                      +
+                    </span>
+                    <span className="quantity">{card.qn}</span>
+                    <span
+                      className="action"
+                      onClick={() => cardItems(cards, card, "-")}
+                    >
+                      -
+                    </span>
+                  </p>
+                  <div className="button" onClick={() => removeItem(card)}>
+                    <img src="https://img.icons8.com/plasticine/100/000000/clear-shopping-cart.png" />
+                    Remove
+                  </div>
+                  <p className="total-quantity single-qn">
+                    Quantity : <span>{card.qn}</span>
+                  </p>
+                  <p className="single-price single-qn">
+                    Price : <span>${card.price}</span>
+                  </p>
+                  <hr />
+                  <p className="price single-qn">
+                    Total Price : <span>${card.qn * card.price}</span>
+                  </p>
+                </div>
               </div>
-            </div>
-          ))
-        : "No Card"}
+            ))
+          : "No Card"}
+      </div>
+      <div className="total">
+        <h1>Total</h1>
+        <hr />
+        <div className="total-qn">
+          Total Quantity : <b>{quantity}</b>
+        </div>
+        <div className="total-price">
+          Total Price : <b>${price}</b>
+        </div>
+        <div className="button">
+          <img src="https://img.icons8.com/plasticine/100/000000/shopping.png" />
+          Checkout
+        </div>
+      </div>
     </div>
   );
 };

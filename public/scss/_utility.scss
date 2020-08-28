@@ -11,6 +11,19 @@ body {
   background-color: #f2f3f7;
   font-family: "Raleway", sans-serif;
 }
+@mixin grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 50px 50px;
+}
+
+@mixin flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 h4,
 p {
   margin: 0;
@@ -27,4 +40,33 @@ ul {
 .container {
   width: 90%;
   margin: 0 auto;
+}
+
+.name {
+  text-transform: capitalize;
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.button {
+  width: 150px;
+  margin: 0 auto;
+  background: whitesmoke;
+  padding: 5px 0px;
+  border-radius: 2px;
+  margin-top: 10px;
+  cursor: pointer;
+  @include flex();
+  justify-content: normal;
+  img {
+    width: 25px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}
+
+hr {
+  border: 1px solid whitesmoke;
 }
