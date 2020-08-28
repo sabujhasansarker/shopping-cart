@@ -10,24 +10,24 @@ const NavBar = () => {
     <header>
       <nav>
         <div className="left">
-          <Link to="/">Logo</Link>
+          <Link to="/shopping-cart">Logo</Link>
         </div>
         <div className="right">
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/shopping-cart">Home</Link>
             </li>
             <li>
-              <Link to="/">Products</Link>
+              <Link to="/shopping-cart">Products</Link>
             </li>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/shopping-cart/login">Login</Link>
             </li>
             <li>
-              <Link to="/register">Register</Link>
+              <Link to="/shopping-cart/register">Register</Link>
             </li>
             <li>
-              <Link to="/card">
+              <Link to="/shopping-cart/card">
                 <img
                   src="https://img.icons8.com/plasticine/100/000000/add-shopping-cart.png"
                   className="cart-img"

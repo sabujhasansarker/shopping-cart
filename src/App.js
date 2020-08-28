@@ -19,9 +19,13 @@ function App() {
           <NavBar />
           <div className="container">
             <Switch>
-              <Route path="/" exact component={Product} />
-              <Route path="/card" exact component={Card} />
-              <Route path="/product-:id" exact component={SingleProduct} />
+              <Route path="/shopping-cart" exact component={Product} />
+              <Route path="/shopping-cart/card" exact component={Card} />
+              <Route
+                path="/shopping-cart/product-:id"
+                exact
+                component={SingleProduct}
+              />
             </Switch>
           </div>
         </div>
