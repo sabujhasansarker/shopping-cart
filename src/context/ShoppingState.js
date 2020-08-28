@@ -4,7 +4,7 @@ import React, { useReducer, useEffect } from "react";
 import data from "../demo.json";
 
 // types
-import { CARD_ITEMS, PRICE, SAVE_DATA } from "./Type";
+import { CARD_ITEMS, PRICE, SAVE, REMOVE } from "./Type";
 
 // Context
 import ShoppingContext from "./ShoppingContext";
@@ -39,25 +39,36 @@ const ShoppingState = ({ children }) => {
     setPrice();
   };
 
-  const cardItems = (prvData, data) => {
-    let findOrg = prvData.find((i) => i.id === data.id);
+  const cardItems = (prvData, data, callBack) => {
+    let findOrg = prvData && prvData.find((i) => i.id === data.id);
     if (findOrg) {
-      findOrg.qn += 1;
+      callBack === "-"
+        ? findOrg.qn > 1
+          ? (findOrg.qn -= 1)
+          : (findOrg.qn = 1)
+        : (findOrg.qn += 1);
       prvData.filter((ca) => (ca.id === data.id ? findOrg : ca));
     } else {
       dispatch({
         type: CARD_ITEMS,
-        payload: [...prvData, data],
+        payload: prvData ? [...prvData, data] : [data],
       });
     }
     dispatch({
-      type: SAVE_DATA,
+      type: SAVE,
     });
   };
 
   const setPrice = () => {
     dispatch({
       type: PRICE,
+    });
+  };
+
+  const removeItem = (data) => {
+    dispatch({
+      type: REMOVE,
+      payload: data,
     });
   };
 
@@ -72,6 +83,7 @@ const ShoppingState = ({ children }) => {
         cardItems,
         setPrice,
         cardItemsRefresh,
+        removeItem,
       }}
     >
       {children}

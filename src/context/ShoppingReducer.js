@@ -1,5 +1,5 @@
 // types
-import { CARD_ITEMS, PRICE, SAVE_DATA } from "./Type";
+import { CARD_ITEMS, PRICE, SAVE, REMOVE } from "./Type";
 
 export default (state, action) => {
   const { type, payload } = action;
@@ -10,16 +10,23 @@ export default (state, action) => {
         ...state,
         cards: payload,
       };
-    case SAVE_DATA:
+    case REMOVE:
+      return {
+        ...state,
+        cards: state.cards.filter((card) => payload.id !== card.id && card),
+      };
+    case SAVE:
       localStorage.setItem("shoppingCard", JSON.stringify(state.cards));
+
     case PRICE:
       return {
         ...state,
-        price: state.cards.reduce(
-          (result, prd) => result + prd.price * prd.qn,
-          0
-        ),
-        quantity: state.cards.reduce((result, prd) => result + prd.qn, 0),
+        price:
+          state.cards &&
+          state.cards.reduce((result, prd) => result + prd.price * prd.qn, 0),
+        quantity:
+          state.cards &&
+          state.cards.reduce((result, prd) => result + prd.qn, 0),
       };
     default:
       return state;
