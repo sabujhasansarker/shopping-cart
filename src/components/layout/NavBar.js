@@ -9,7 +9,9 @@ const NavBar = () => {
   return (
     <header>
       <nav>
-        <div className="left">Logo</div>
+        <div className="left">
+          <Link to="/">Logo</Link>
+        </div>
         <div className="right">
           <ul>
             <li>
@@ -26,7 +28,11 @@ const NavBar = () => {
             </li>
             <li>
               <Link to="/card">
-                Card <span className="card-number">{quantity}</span>
+                <img
+                  src="https://img.icons8.com/plasticine/100/000000/add-shopping-cart.png"
+                  className="cart-img"
+                />
+                <span className="card-number">{quantity}</span>
               </Link>
             </li>
           </ul>
