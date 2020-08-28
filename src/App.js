@@ -2,9 +2,9 @@ import React, { useState, useRef } from "react";
 
 // Demo
 import data from "./demo.json";
+import NavBar from "./components/layout/NavBar";
 
 function App() {
-  const [quantity, setQuantity] = useState(1);
   const [card, setCard] = useState([]);
   const [price, setPrice] = useState(0);
   const value = useRef(null);
@@ -26,6 +26,10 @@ function App() {
     totalPrice();
   };
 
+  const increase = (da) => {
+    data.filter((d) => (d.id === da.id ? (da.qn += 1) : d));
+  };
+
   // Total price
   value.current = card.reduce((result, prd) => result + prd.price * prd.qn, 0);
   const totalPrice = () => {
@@ -33,8 +37,13 @@ function App() {
     console.log("card");
   };
 
+  const onChange = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
     <div className="App">
+      <NavBar />
       <div className="container">
         <h1>App Js</h1>
         <div className="d-grid">
@@ -45,11 +54,15 @@ function App() {
                 <h4>{d.name}</h4>
                 <p>${d.price}</p>
                 <p>
-                  <span onClick={() => setQuantity(quantity + 1)}>+</span>
+                  <span>+</span>
                   <span style={{ padding: "0px 10px", cursor: "default" }}>
-                    <input type="number" value={d.qn} />
+                    <input
+                      type="number"
+                      value={d.qn}
+                      onChange={(d) => onChange(d)}
+                    />
                   </span>
-                  <span onClick={() => (d.qn -= 1)}>-</span>
+                  <span>-</span>
                 </p>
                 <button onClick={() => onClick(d)}>Add</button>
               </div>

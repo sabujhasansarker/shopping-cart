@@ -1,0 +1,55 @@
+@import "./utility";
+
+$nav-bg: whitesmoke;
+
+// Card start
+.card {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: $nav-bg;
+}
+.d-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 100px 100px;
+}
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+img {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
+.content {
+  padding: 10px;
+  line-height: 1.5;
+}
+
+span {
+  cursor: pointer;
+}
+
+// Card end
+
+// Nav
+header {
+  background: $nav-bg;
+  nav {
+    padding: 10px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    ul {
+      display: flex;
+      justify-content: space-evenly;
+      li {
+        padding: 10px;
+      }
+    }
+  }
+}
