@@ -1,10 +1,10 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 
 // data
 import data from "../demo.json";
 
 // types
-import { CARD_ITEMS, PRICE, QUANTITY } from "./Type";
+import { CARD_ITEMS, PRICE, SAVE_DATA } from "./Type";
 
 // Context
 import ShoppingContext from "./ShoppingContext";
@@ -26,10 +26,32 @@ const ShoppingState = ({ children }) => {
   const [state, dispatch] = useReducer(ShoppingReducer, initialState);
 
   // funtions //
-  const cardItems = (data) => {
+
+  useEffect(() => {
+    cardItemsRefresh();
+  }, []);
+
+  const cardItemsRefresh = () => {
     dispatch({
       type: CARD_ITEMS,
-      payload: data,
+      payload: JSON.parse(localStorage.getItem("shoppingCard")),
+    });
+    setPrice();
+  };
+
+  const cardItems = (prvData, data) => {
+    let findOrg = prvData.find((i) => i.id === data.id);
+    if (findOrg) {
+      findOrg.qn += 1;
+      prvData.filter((ca) => (ca.id === data.id ? findOrg : ca));
+    } else {
+      dispatch({
+        type: CARD_ITEMS,
+        payload: [...prvData, data],
+      });
+    }
+    dispatch({
+      type: SAVE_DATA,
     });
   };
 
@@ -49,6 +71,7 @@ const ShoppingState = ({ children }) => {
         loading: state.loading,
         cardItems,
         setPrice,
+        cardItemsRefresh,
       }}
     >
       {children}

@@ -1,4 +1,7 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+
+// Context
 import ShoppingContext from "../../context/ShoppingContext";
 
 const NavBar = () => {
@@ -10,10 +13,10 @@ const NavBar = () => {
         <div className="right">
           <ul>
             <li>
-              <a href="#">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="#">Products</a>
+              <Link to="/">Products</Link>
             </li>
             <li>
               <a href="#">Login</a>
@@ -22,9 +25,9 @@ const NavBar = () => {
               <a href="#">Register</a>
             </li>
             <li>
-              <a href="#">
+              <Link to="/card">
                 Card <span className="card-number">{quantity}</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

@@ -1,25 +1,29 @@
-import React, { useState, useRef } from "react";
+import React from "react";
+
+// Router
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import NavBar from "./components/layout/NavBar";
 
 // State
 import ShoppingState from "./context/ShoppingState";
+import Product from "./components/Product";
 import Card from "./components/Card";
 
 function App() {
   return (
     <ShoppingState>
-      <div className="App">
-        <NavBar />
-        <div className="container">
-          <h1>App Js</h1>
-          <Card />
-          {/* <div className="card-list">
-            <p>{card.length}</p>
-            <div className="price">{value.current}</div>
-          </div> */}
+      <Router>
+        <div className="App">
+          <NavBar />
+          <div className="container">
+            <Switch>
+              <Route path="/" exact component={Product} />
+              <Route path="/card" exact component={Card} />
+            </Switch>
+          </div>
         </div>
-      </div>
+      </Router>
     </ShoppingState>
   );
 }

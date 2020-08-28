@@ -1,5 +1,5 @@
 // types
-import { CARD_ITEMS, PRICE, QUANTITY } from "./Type";
+import { CARD_ITEMS, PRICE, SAVE_DATA } from "./Type";
 
 export default (state, action) => {
   const { type, payload } = action;
@@ -10,6 +10,8 @@ export default (state, action) => {
         ...state,
         cards: payload,
       };
+    case SAVE_DATA:
+      localStorage.setItem("shoppingCard", JSON.stringify(state.cards));
     case PRICE:
       return {
         ...state,
