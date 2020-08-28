@@ -70,6 +70,9 @@ const ShoppingState = ({ children }) => {
       type: REMOVE,
       payload: data,
     });
+    dispatch({
+      type: SAVE,
+    });
   };
 
   return (
