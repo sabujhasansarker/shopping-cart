@@ -9,6 +9,7 @@ import NavBar from "./components/layout/NavBar";
 import ShoppingState from "./context/ShoppingState";
 import Product from "./components/Product";
 import Card from "./components/Card";
+import SingleProduct from "./components/SingleProduct";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Switch>
               <Route path="/" exact component={Product} />
               <Route path="/card" exact component={Card} />
+              <Route path="/product-:id" exact component={SingleProduct} />
             </Switch>
           </div>
         </div>
