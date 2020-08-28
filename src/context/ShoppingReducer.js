@@ -36,6 +36,7 @@ export default (state, action) => {
         price: null,
         quantity: 0,
       };
+
     default:
       return state;
   }

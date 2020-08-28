@@ -21,16 +21,17 @@ const NavBar = () => {
               <Link to="/">Products</Link>
             </li>
             <li>
-              <a href="#">Login</a>
+              <Link to="/login">Login</Link>
             </li>
             <li>
-              <a href="#">Register</a>
+              <Link to="/register">Register</Link>
             </li>
             <li>
               <Link to="/card">
                 <img
                   src="https://img.icons8.com/plasticine/100/000000/add-shopping-cart.png"
                   className="cart-img"
+                  alt=""
                 />
                 <span className="card-number">{quantity}</span>
               </Link>

@@ -39,7 +39,10 @@ const Card = () => {
                     </span>
                   </p>
                   <div className="button" onClick={() => removeItem(card)}>
-                    <img src="https://img.icons8.com/plasticine/100/000000/clear-shopping-cart.png" />
+                    <img
+                      src="https://img.icons8.com/plasticine/100/000000/clear-shopping-cart.png"
+                      alt=""
+                    />
                     Remove
                   </div>
                   <p className="total-quantity single-qn">
@@ -66,7 +69,10 @@ const Card = () => {
               Total Price : <b>${price}</b>
             </div>
             <div className="button" onClick={() => checkOut()}>
-              <img src="https://img.icons8.com/plasticine/100/000000/shopping.png" />
+              <img
+                src="https://img.icons8.com/plasticine/100/000000/shopping.png"
+                alt=""
+              />
               Checkout
             </div>
           </div>
