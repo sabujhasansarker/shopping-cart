@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import ShoppingContext from "../../context/ShoppingContext";
 
 const NavBar = () => {
+  const { quantity } = useContext(ShoppingContext);
   return (
     <header>
       <nav>
@@ -21,7 +23,7 @@ const NavBar = () => {
             </li>
             <li>
               <a href="#">
-                Card <span className="card-number">0</span>
+                Card <span className="card-number">{quantity}</span>
               </a>
             </li>
           </ul>
