@@ -12,7 +12,6 @@
     "name": "product 2",
     "image": "https://bit.ly/31x97z4",
     "dec": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus minima eos eaque, consequuntur, odit culpa velit quaerat nihil, labore facilis dolor nostrum nesciunt animi alias expedita inventore nam vitae sapiente?",
-
     "qn": 1,
     "price": 200
   },
@@ -21,7 +20,6 @@
     "name": "product 3",
     "image": "https://bit.ly/31x97z4",
     "dec": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus minima eos eaque, consequuntur, odit culpa velit quaerat nihil, labore facilis dolor nostrum nesciunt animi alias expedita inventore nam vitae sapiente?",
-
     "qn": 1,
     "price": 300
   },
@@ -30,7 +28,6 @@
     "name": "product 4",
     "image": "https://bit.ly/31x97z4",
     "dec": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus minima eos eaque, consequuntur, odit culpa velit quaerat nihil, labore facilis dolor nostrum nesciunt animi alias expedita inventore nam vitae sapiente?",
-
     "qn": 1,
     "price": 400
   },
@@ -38,7 +35,6 @@
     "id": 5,
     "name": "product 5",
     "dec": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus minima eos eaque, consequuntur, odit culpa velit quaerat nihil, labore facilis dolor nostrum nesciunt animi alias expedita inventore nam vitae sapiente?",
-
     "image": "https://bit.ly/31x97z4",
     "qn": 1,
     "price": 500

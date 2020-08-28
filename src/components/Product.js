@@ -15,14 +15,19 @@ const Product = () => {
   };
 
   return (
-    <div className="d-grid">
+    <div className="product">
       {items.map((item) => (
         <div className="card" key={item.id}>
-          <img src={item.image} alt="" />
+          <img className="product-img" src={item.image} alt="" />
           <div className="content">
-            <Link to={`/product-${item.id}`}>{item.name}</Link>
+            <Link to={`/product-${item.id}`} className="name">
+              {item.name}
+            </Link>
             <p>${item.price}</p>
-            <button onClick={() => onClick(item)}>Add</button>
+            <div className="button" onClick={() => onClick(item)}>
+              <img src="https://img.icons8.com/plasticine/100/000000/add-shopping-cart.png" />{" "}
+              Add to cart
+            </div>
           </div>
         </div>
       ))}

@@ -1,6 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@1,500&family=Raleway:wght@400;500;600&display=swap");
+
+// font-family: 'Montserrat', sans-serif;
+// font-family: 'Playfair Display', serif;
+// font-family: 'Raleway', sans-serif;
 * {
   margin: 0;
   padding: 0;
+}
+body {
+  background-color: #f2f3f7;
+  font-family: "Raleway", sans-serif;
 }
 h4,
 p {
@@ -15,15 +24,7 @@ ul {
   list-style: none;
 }
 
-button {
-  padding: 10px;
-  background: none;
-  border: 1px solid green;
-  border-radius: 2px;
-  width: 100px;
-  margin-top: 20px;
-  cursor: pointer;
-  &:hover {
-    background: green;
-  }
+.container {
+  width: 90%;
+  margin: 0 auto;
 }

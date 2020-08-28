@@ -2,34 +2,58 @@
 
 $nav-bg: whitesmoke;
 
-// Card start
-.card {
-  border: 1px solid black;
-  border-radius: 5px;
-  background-color: $nav-bg;
-}
-.d-grid {
+@mixin grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
-  gap: 100px 100px;
-}
-.container {
-  width: 90%;
-  margin: 0 auto;
-}
-img {
-  display: block;
-  width: 100%;
-  margin: 0 auto;
-}
-.content {
-  padding: 10px;
-  line-height: 1.5;
+  gap: 50px 50px;
 }
 
-span {
-  cursor: pointer;
+// Card start
+
+.product {
+  padding-top: 50px;
+  @include grid();
+  .card {
+    background: #ffffff;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    border-radius: 5px;
+    .product-img {
+      border-radius: 5px 5px 0 0;
+      width: 100%;
+    }
+    .content {
+      padding: 10px;
+      .name {
+        text-transform: capitalize;
+        font-size: 1.2rem;
+        display: block;
+        margin-bottom: 5px;
+      }
+      .button {
+        width: 150px;
+        margin: 0 auto;
+        background: whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 5px 0px;
+        border-radius: 2px;
+        margin-top: 10px;
+        img {
+          width: 25px;
+        }
+      }
+    }
+    &:hover {
+      box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+    }
+  }
 }
 
 // Card end
