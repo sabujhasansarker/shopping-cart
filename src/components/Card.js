@@ -1,16 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, Fragment } from "react";
 import ShoppingContext from "../context/ShoppingContext";
 import { Link } from "react-router-dom";
 
 const Card = () => {
-  const { cards, cardItems, removeItem, quantity, price } = useContext(
-    ShoppingContext
-  );
+  const {
+    cards,
+    cardItems,
+    removeItem,
+    quantity,
+    price,
+    checkOut,
+  } = useContext(ShoppingContext);
   return (
     <div className="carts-container">
-      <div className="carts">
-        {cards.length > 0
-          ? cards.map((card) => (
+      {cards.length > 0 ? (
+        <Fragment>
+          <div className="carts">
+            {cards.map((card) => (
               <div className="cart" key={card.id}>
                 <img src={card.image} alt="" />
                 <div className="content">
@@ -48,23 +54,26 @@ const Card = () => {
                   </p>
                 </div>
               </div>
-            ))
-          : "No Card"}
-      </div>
-      <div className="total">
-        <h1>Total</h1>
-        <hr />
-        <div className="total-qn">
-          Total Quantity : <b>{quantity}</b>
-        </div>
-        <div className="total-price">
-          Total Price : <b>${price}</b>
-        </div>
-        <div className="button">
-          <img src="https://img.icons8.com/plasticine/100/000000/shopping.png" />
-          Checkout
-        </div>
-      </div>
+            ))}
+          </div>
+          <div className="total">
+            <h1>Total</h1>
+            <hr />
+            <div className="total-qn">
+              Total Quantity : <b>{quantity}</b>
+            </div>
+            <div className="total-price">
+              Total Price : <b>${price}</b>
+            </div>
+            <div className="button" onClick={() => checkOut()}>
+              <img src="https://img.icons8.com/plasticine/100/000000/shopping.png" />
+              Checkout
+            </div>
+          </div>
+        </Fragment>
+      ) : (
+        <h1 className="empty">Your cart is currently empty.</h1>
+      )}
     </div>
   );
 };

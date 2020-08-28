@@ -4,7 +4,7 @@ import React, { useReducer, useEffect } from "react";
 import data from "../demo.json";
 
 // types
-import { CARD_ITEMS, PRICE, SAVE, REMOVE } from "./Type";
+import { CARD_ITEMS, PRICE, SAVE, REMOVE, CHECKOUT } from "./Type";
 
 // Context
 import ShoppingContext from "./ShoppingContext";
@@ -75,6 +75,12 @@ const ShoppingState = ({ children }) => {
     });
   };
 
+  const checkOut = () => {
+    dispatch({
+      type: CHECKOUT,
+    });
+  };
+
   return (
     <ShoppingContext.Provider
       value={{
@@ -87,6 +93,7 @@ const ShoppingState = ({ children }) => {
         setPrice,
         cardItemsRefresh,
         removeItem,
+        checkOut,
       }}
     >
       {children}

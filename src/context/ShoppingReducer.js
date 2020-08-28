@@ -1,5 +1,5 @@
 // types
-import { CARD_ITEMS, PRICE, SAVE, REMOVE } from "./Type";
+import { CARD_ITEMS, PRICE, SAVE, REMOVE, CHECKOUT } from "./Type";
 
 export default (state, action) => {
   const { type, payload } = action;
@@ -27,6 +27,14 @@ export default (state, action) => {
         quantity:
           state.cards &&
           state.cards.reduce((result, prd) => result + prd.qn, 0),
+      };
+    case CHECKOUT:
+      localStorage.setItem("shoppingCard", JSON.stringify([]));
+      return {
+        ...state,
+        cards: [],
+        price: null,
+        quantity: 0,
       };
     default:
       return state;
