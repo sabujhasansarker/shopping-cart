@@ -18,7 +18,7 @@ const Product = () => {
         <div className="card" key={item.id}>
           <img className="product-img" src={item.image} alt="" />
           <div className="content">
-            <Link to={`/product-${item.id}`} className="name">
+            <Link to={`/shopping-cart/product-${item.id}`} className="name">
               {item.name}
             </Link>
             <p>${item.price}</p>
