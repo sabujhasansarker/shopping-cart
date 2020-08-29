@@ -70,3 +70,19 @@ ul {
 hr {
   border: 1px solid whitesmoke;
 }
+.action-container {
+  @include flex();
+  justify-content: normal;
+  margin: 15px 0px;
+  .quantity {
+    margin: 0px 10px;
+  }
+  .action {
+    cursor: pointer;
+    padding: 5px;
+    width: 15px;
+    background: whitesmoke;
+    text-align: center;
+    font-weight: bold;
+  }
+}

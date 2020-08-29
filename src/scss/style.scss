@@ -96,22 +96,7 @@ header {
     .content {
       margin-left: 30px;
       margin-top: 10px;
-      .action-container {
-        @include flex();
-        justify-content: normal;
-        margin: 15px 0px;
-        .quantity {
-          margin: 0px 10px;
-        }
-        .action {
-          cursor: pointer;
-          padding: 5px;
-          width: 15px;
-          background: whitesmoke;
-          text-align: center;
-          font-weight: bold;
-        }
-      }
+
       .single-qn {
         margin: 10px 0px;
       }
@@ -138,5 +123,41 @@ header {
     text-align: center;
     margin: 0 auto;
     font-size: 2.5rem;
+  }
+}
+
+.single-product {
+  margin-top: 50px;
+  .card {
+    padding: 50px;
+    background: white;
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+    h1 {
+      margin: 20px 0px;
+    }
+    .dec {
+      line-height: 1.5;
+      width: 70%;
+      margin: 0 auto;
+    }
+    .price {
+      margin: 20px 0px;
+    }
+  }
+  .action-container {
+    justify-content: center;
+  }
+  .flex {
+    display: inline-block;
+    .button {
+      float: left;
+    }
+    .remove {
+      margin-left: 10px;
+      background: red;
+      color: white;
+    }
   }
 }
