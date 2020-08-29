@@ -20,7 +20,10 @@ const Card = () => {
               <div className="cart" key={card.id}>
                 <img src={card.image} alt="" />
                 <div className="content">
-                  <Link className="name" to={`/product-${card.id}`}>
+                  <Link
+                    className="name"
+                    to={`/shopping-cart/product-${card.id}`}
+                  >
                     {card.name}
                   </Link>
                   <p className="action-container">

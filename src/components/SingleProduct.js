@@ -31,7 +31,7 @@ const SingleProduct = ({ match }) => {
             >
               +
             </span>
-            <span className="quantity">{item.qn}</span>
+            <span className="quantity">{cardTrue ? item.qn : 0}</span>
             <span
               className="action"
               onClick={() => cardItems(cards, item, "-")}
