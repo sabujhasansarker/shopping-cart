@@ -4,13 +4,24 @@ import React, { useReducer, useEffect } from "react";
 import data from "../demo.json";
 
 // types
-import { CARD_ITEMS, PRICE, SAVE, REMOVE, CHECKOUT } from "./Type";
+import {
+  CARD_ITEMS,
+  PRICE,
+  SAVE,
+  REMOVE,
+  CHECKOUT,
+  GET_USER,
+  LOGOUT,
+} from "./Type";
 
 // Context
 import ShoppingContext from "./ShoppingContext";
 
 // reducer
 import ShoppingReducer from "./ShoppingReducer";
+
+// auth
+import { auth } from "../config/fire";
 
 const ShoppingState = ({ children }) => {
   // initial state
@@ -20,6 +31,7 @@ const ShoppingState = ({ children }) => {
     cards: [],
     price: 0,
     quantity: 0,
+    auth: false,
   };
 
   // reducer
@@ -81,6 +93,26 @@ const ShoppingState = ({ children }) => {
     });
   };
 
+  const getUser = () => {
+    auth.onAuthStateChanged(function (user) {
+      if (user) {
+        dispatch({
+          type: GET_USER,
+          payload: user,
+        });
+      } else {
+        console.log("no");
+      }
+    });
+  };
+
+  const logout = () => {
+    auth.signOut();
+    dispatch({
+      type: LOGOUT,
+    });
+  };
+
   return (
     <ShoppingContext.Provider
       value={{
@@ -89,11 +121,14 @@ const ShoppingState = ({ children }) => {
         price: state.price,
         quantity: state.quantity,
         loading: state.loading,
+        auth: state.auth,
         cardItems,
         setPrice,
         cardItemsRefresh,
         removeItem,
         checkOut,
+        getUser,
+        logout,
       }}
     >
       {children}

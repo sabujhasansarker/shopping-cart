@@ -1,5 +1,13 @@
 // types
-import { CARD_ITEMS, PRICE, SAVE, REMOVE, CHECKOUT } from "./Type";
+import {
+  CARD_ITEMS,
+  PRICE,
+  SAVE,
+  REMOVE,
+  CHECKOUT,
+  GET_USER,
+  LOGOUT,
+} from "./Type";
 
 export default (state, action) => {
   const { type, payload } = action;
@@ -36,7 +44,16 @@ export default (state, action) => {
         price: null,
         quantity: 0,
       };
-
+    case GET_USER:
+      return {
+        ...state,
+        auth: true,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        auth: false,
+      };
     default:
       return state;
   }

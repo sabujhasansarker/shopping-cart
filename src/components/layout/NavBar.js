@@ -1,11 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // Context
 import ShoppingContext from "../../context/ShoppingContext";
 
 const NavBar = () => {
-  const { quantity } = useContext(ShoppingContext);
+  const { quantity, auth, getUser, logout } = useContext(ShoppingContext);
+  useEffect(() => {
+    getUser();
+  }, []);
   return (
     <header>
       <nav>
@@ -20,12 +23,23 @@ const NavBar = () => {
             <li>
               <Link to="/shopping-cart">Products</Link>
             </li>
-            <li>
-              <Link to="/shopping-cart/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/shopping-cart/register">Register</Link>
-            </li>
+            {auth ? (
+              <li>
+                <Link to="/shopping-cart/login" onClick={() => logout()}>
+                  Logout
+                </Link>
+              </li>
+            ) : (
+              <Fragment>
+                <li>
+                  <Link to="/shopping-cart/login">Login</Link>
+                </li>
+                <li>
+                  <Link to="/shopping-cart/register">Register</Link>
+                </li>
+              </Fragment>
+            )}
+
             <li>
               <Link to="/shopping-cart/card">
                 <img

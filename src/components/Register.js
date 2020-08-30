@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { auth, database } from "../config/fire";
+import { auth } from "../config/fire";
+import ShoppingContext from "../context/ShoppingContext";
 
 const Register = () => {
+  const { getUser } = useContext(ShoppingContext);
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -19,11 +21,14 @@ const Register = () => {
       setError("Password dose not match");
       return clearError();
     }
+
     try {
       await auth.createUserWithEmailAndPassword(email, password_1);
       await auth.currentUser.updateProfile({
         displayName: name,
       });
+
+      getUser();
     } catch (error) {
       setError(error.message);
       clearError();
