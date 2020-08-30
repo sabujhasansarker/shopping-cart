@@ -96,6 +96,7 @@ const ShoppingState = ({ children }) => {
   const getUser = () => {
     auth.onAuthStateChanged(function (user) {
       if (user) {
+        console.log(user.providerData);
         dispatch({
           type: GET_USER,
           payload: user,

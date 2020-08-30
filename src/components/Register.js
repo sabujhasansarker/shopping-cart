@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import gravatar from "gravatar";
 
 import { auth } from "../config/fire";
 import ShoppingContext from "../context/ShoppingContext";
@@ -17,6 +18,7 @@ const Register = () => {
   const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
   const onSubmit = async (e) => {
     e.preventDefault();
+    var photoURL = gravatar.url(email, { s: "200", r: "x", d: "retro" }, true);
     if (password_1 !== password_2) {
       setError("Password dose not match");
       return clearError();
@@ -24,10 +26,10 @@ const Register = () => {
 
     try {
       await auth.createUserWithEmailAndPassword(email, password_1);
-      await auth.currentUser.updateProfile({
+      auth.currentUser.updateProfile({
         displayName: name,
+        photoURL,
       });
-
       getUser();
     } catch (error) {
       setError(error.message);
