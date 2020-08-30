@@ -16,9 +16,11 @@ const Register = () => {
   });
   const [error, setError] = useState(null);
   const { name, email, password_1, password_2 } = data;
+
   if (isAutination) {
     return <Redirect to="/shopping-cart" />;
   }
+
   const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
   const onSubmit = async (e) => {
     e.preventDefault();

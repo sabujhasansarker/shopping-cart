@@ -14,9 +14,11 @@ const Login = () => {
   });
   const [error, setError] = useState(null);
   const { email, password_1 } = data;
+
   if (isAutination) {
     return <Redirect to="/shopping-cart" />;
   }
+
   const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
   const onSubmit = async (e) => {
     e.preventDefault();

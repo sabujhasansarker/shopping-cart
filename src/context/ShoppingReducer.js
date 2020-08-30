@@ -48,11 +48,13 @@ export default (state, action) => {
       return {
         ...state,
         isAutination: true,
+        loading: false,
       };
     case LOGOUT:
       return {
         ...state,
         aisAutinationuth: false,
+        loading: false,
       };
     default:
       return state;

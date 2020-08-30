@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
 // Router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -6,17 +6,24 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./components/layout/NavBar";
 
 // State
-import ShoppingState from "./context/ShoppingState";
 import Product from "./components/Product";
 import Card from "./components/Card";
 import SingleProduct from "./components/SingleProduct";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import ShoppingContext from "./context/ShoppingContext";
+import PreLoader from "./components/layout/PreLoader";
 
 function App() {
+  useEffect(() => {
+    getUser();
+  }, []);
+  const { loading, getUser } = useContext(ShoppingContext);
   return (
-    <ShoppingState>
-      <Router>
+    <Router>
+      {loading ? (
+        <PreLoader />
+      ) : (
         <div className="App">
           <NavBar />
           <div className="container">
@@ -37,8 +44,8 @@ function App() {
             </Switch>
           </div>
         </div>
-      </Router>
-    </ShoppingState>
+      )}
+    </Router>
   );
 }
 

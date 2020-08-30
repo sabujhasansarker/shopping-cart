@@ -27,7 +27,7 @@ const ShoppingState = ({ children }) => {
   // initial state
   const initialState = {
     items: data,
-    loading: false,
+    loading: true,
     cards: [],
     price: 0,
     quantity: 0,
@@ -96,13 +96,10 @@ const ShoppingState = ({ children }) => {
   const getUser = () => {
     auth.onAuthStateChanged(function (user) {
       if (user) {
-        console.log(user.providerData);
         dispatch({
           type: GET_USER,
-          payload: user,
+          payload: user.providerData,
         });
-      } else {
-        console.log("no");
       }
     });
   };
