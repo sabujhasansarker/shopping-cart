@@ -1,12 +1,13 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import gravatar from "gravatar";
 
 import { auth } from "../config/fire";
 import ShoppingContext from "../context/ShoppingContext";
 
 const Register = () => {
-  const { getUser } = useContext(ShoppingContext);
+  const { getUser, isAutination } = useContext(ShoppingContext);
+
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -15,6 +16,9 @@ const Register = () => {
   });
   const [error, setError] = useState(null);
   const { name, email, password_1, password_2 } = data;
+  if (isAutination) {
+    return <Redirect to="/shopping-cart" />;
+  }
   const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
   const onSubmit = async (e) => {
     e.preventDefault();

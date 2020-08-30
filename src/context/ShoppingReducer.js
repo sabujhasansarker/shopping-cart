@@ -47,12 +47,12 @@ export default (state, action) => {
     case GET_USER:
       return {
         ...state,
-        auth: true,
+        isAutination: true,
       };
     case LOGOUT:
       return {
         ...state,
-        auth: false,
+        aisAutinationuth: false,
       };
     default:
       return state;

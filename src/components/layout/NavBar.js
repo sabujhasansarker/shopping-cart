@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 import ShoppingContext from "../../context/ShoppingContext";
 
 const NavBar = () => {
-  const { quantity, auth, getUser, logout } = useContext(ShoppingContext);
+  const { quantity, isAutination, getUser, logout } = useContext(
+    ShoppingContext
+  );
   useEffect(() => {
     getUser();
   }, []);
@@ -23,7 +25,7 @@ const NavBar = () => {
             <li>
               <Link to="/shopping-cart">Products</Link>
             </li>
-            {auth ? (
+            {isAutination ? (
               <li>
                 <Link to="/shopping-cart/login" onClick={() => logout()}>
                   Logout

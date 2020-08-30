@@ -31,7 +31,7 @@ const ShoppingState = ({ children }) => {
     cards: [],
     price: 0,
     quantity: 0,
-    auth: false,
+    isAutination: false,
   };
 
   // reducer
@@ -122,7 +122,7 @@ const ShoppingState = ({ children }) => {
         price: state.price,
         quantity: state.quantity,
         loading: state.loading,
-        auth: state.auth,
+        isAutination: state.isAutination,
         cardItems,
         setPrice,
         cardItemsRefresh,
