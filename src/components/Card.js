@@ -19,6 +19,9 @@ const Card = () => {
         <h4 className="user-name">
           Hello {user.displayName} , <br /> This is your cardItems
         </h4>
+        {!user.emailVerified && (
+          <p style={{ color: "red" }}>Plz verified Your email</p>
+        )}
       </div>
       <div className="carts-container">
         {cards.length > 0 ? (
@@ -79,13 +82,15 @@ const Card = () => {
               <div className="total-price">
                 Total Price : <b>${price}</b>
               </div>
-              <div className="button" onClick={() => checkOut()}>
-                <img
-                  src="https://img.icons8.com/plasticine/100/000000/shopping.png"
-                  alt=""
-                />
-                Checkout
-              </div>
+              {user.emailVerified && (
+                <div className="button" onClick={() => checkOut()}>
+                  <img
+                    src="https://img.icons8.com/plasticine/100/000000/shopping.png"
+                    alt=""
+                  />
+                  Checkout
+                </div>
+              )}
             </div>
           </Fragment>
         ) : (

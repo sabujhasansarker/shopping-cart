@@ -36,6 +36,7 @@ const Register = () => {
         displayName: name,
         photoURL,
       });
+      auth.onAuthStateChanged((user) => user.sendEmailVerification());
       getUser();
     } catch (error) {
       setError(error.message);

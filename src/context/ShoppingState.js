@@ -97,6 +97,7 @@ const ShoppingState = ({ children }) => {
   const getUser = () => {
     auth.onAuthStateChanged(function (user) {
       if (user) {
+        user.providerData[0].emailVerified = user.emailVerified;
         dispatch({
           type: GET_USER,
           payload: user.providerData[0],
