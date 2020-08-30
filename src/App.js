@@ -14,6 +14,8 @@ import Login from "./components/Login";
 import ShoppingContext from "./context/ShoppingContext";
 import PreLoader from "./components/layout/PreLoader";
 
+import PrivetRoute from "./components/PrivetRoute";
+
 function App() {
   useEffect(() => {
     getUser();
@@ -35,7 +37,7 @@ function App() {
                 component={Register}
               />
               <Route path="/shopping-cart/login" exact component={Login} />
-              <Route path="/shopping-cart/card" exact component={Card} />
+              <PrivetRoute path="/shopping-cart/card" exact component={Card} />
               <Route
                 path="/shopping-cart/product-:id"
                 exact

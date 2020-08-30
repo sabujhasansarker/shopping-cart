@@ -177,3 +177,18 @@ header {
   margin-right: auto;
   width: 50%;
 }
+
+.profile {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 30px;
+  img.user-profile {
+    border-radius: 50%;
+    text-align: right;
+    display: block;
+    width: 100px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+}

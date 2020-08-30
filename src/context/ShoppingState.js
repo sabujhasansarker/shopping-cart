@@ -32,6 +32,7 @@ const ShoppingState = ({ children }) => {
     price: 0,
     quantity: 0,
     isAutination: false,
+    user: null,
   };
 
   // reducer
@@ -98,7 +99,11 @@ const ShoppingState = ({ children }) => {
       if (user) {
         dispatch({
           type: GET_USER,
-          payload: user.providerData,
+          payload: user.providerData[0],
+        });
+      } else {
+        dispatch({
+          type: LOGOUT,
         });
       }
     });
@@ -120,6 +125,7 @@ const ShoppingState = ({ children }) => {
         quantity: state.quantity,
         loading: state.loading,
         isAutination: state.isAutination,
+        user: state.user,
         cardItems,
         setPrice,
         cardItemsRefresh,
