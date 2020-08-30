@@ -1,21 +1,63 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
+// auth
+import { auth } from "../config/fire";
+import ShoppingContext from "../context/ShoppingContext";
+
 const Login = () => {
+  const { getUser } = useContext(ShoppingContext);
+  const [data, setData] = useState({
+    email: "",
+    password_1: "",
+  });
+  const [error, setError] = useState(null);
+  const { email, password_1 } = data;
+  const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await auth.signInWithEmailAndPassword(email, password_1);
+      getUser();
+    } catch (error) {
+      setError(error.message);
+      clearError();
+    }
+  };
+
+  const clearError = () => {
+    setTimeout(() => {
+      setError("");
+    }, 2000);
+  };
+
   return (
     <div className="login form-container">
       <h1>Login</h1>
-      <form action="" className="form">
+      <p>{error}</p>
+      <form action="" className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-item">
           <label htmlFor="email">Email : </label>
-          <input type="email" name="email" placeholder="E-mail" />
+          <input
+            value={email}
+            onChange={(e) => onChange(e)}
+            type="email"
+            name="email"
+            placeholder="E-mail"
+          />
         </div>
         <div className="form-item">
           <label htmlFor="password_1">Password : </label>
-          <input type="password" name="password_1" placeholder="Password" />
+          <input
+            value={password_1}
+            onChange={(e) => onChange(e)}
+            type="password"
+            name="password_1"
+            placeholder="Password"
+          />
         </div>
         <div className="form-item">
-          <input className="btn" type="submit" name="submit" value="register" />
+          <input className="btn" type="submit" name="submit" value="login" />
         </div>
       </form>
       <p>
