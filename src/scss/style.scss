@@ -202,9 +202,15 @@ header {
   }
   .preview {
     margin-left: 40px;
+    text-align: center;
+    margin: 0 auto;
+    img {
+      width: 200px;
+    }
     h3 {
       text-align: center;
       text-transform: capitalize;
+      margin-bottom: 30px;
     }
   }
 }

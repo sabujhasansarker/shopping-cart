@@ -15,5 +15,5 @@ firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 const database = firebase.database().ref("product");
-const store = firebase.storage().ref();
+const store = firebase.storage();
 export { auth, database, store };
