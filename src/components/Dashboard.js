@@ -68,7 +68,7 @@ const Dashboard = () => {
           if (percentage >= 100) {
             // Get url
             const url = await store.ref(file.name + math).getDownloadURL();
-            setData({ ...data, image: url });
+            setData({ ...data, image: url, qn: 1 });
             setYesOrNo(true);
             if (typeof image === "string") {
               // Yes or no
