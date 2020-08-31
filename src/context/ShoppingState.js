@@ -1,8 +1,5 @@
 import React, { useReducer, useEffect } from "react";
 
-// data
-import data from "../demo.json";
-
 // types
 import {
   CARD_ITEMS,
@@ -12,6 +9,7 @@ import {
   CHECKOUT,
   GET_USER,
   LOGOUT,
+  GET_DATA,
 } from "./Type";
 
 // Context
@@ -21,12 +19,12 @@ import ShoppingContext from "./ShoppingContext";
 import ShoppingReducer from "./ShoppingReducer";
 
 // auth
-import { auth } from "../config/fire";
+import { auth, database } from "../config/fire";
 
 const ShoppingState = ({ children }) => {
   // initial state
   const initialState = {
-    items: data,
+    items: [],
     loading: true,
     cards: [],
     price: 0,
@@ -42,7 +40,22 @@ const ShoppingState = ({ children }) => {
 
   useEffect(() => {
     cardItemsRefresh();
+    getData();
   }, []);
+
+  const getData = () => {
+    const dataItem = [];
+    database.on("value", function (snap) {
+      snap.forEach(function (item) {
+        var itemVal = item.val();
+        dataItem.push(itemVal);
+      });
+    });
+    dispatch({
+      type: GET_DATA,
+      payload: dataItem,
+    });
+  };
 
   const cardItemsRefresh = () => {
     dispatch({
@@ -134,6 +147,7 @@ const ShoppingState = ({ children }) => {
         checkOut,
         getUser,
         logout,
+        getData,
       }}
     >
       {children}

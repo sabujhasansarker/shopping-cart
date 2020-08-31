@@ -7,12 +7,19 @@ import {
   CHECKOUT,
   GET_USER,
   LOGOUT,
+  GET_DATA,
 } from "./Type";
 
 export default (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case GET_DATA:
+      return {
+        ...state,
+        items: payload,
+        loading: true,
+      };
     case CARD_ITEMS:
       return {
         ...state,
