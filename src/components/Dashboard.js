@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, Fragment, useContext } from "react";
 
 import { store, database } from "../config/fire";
+import { Remove } from "./Remove";
+import ShoppingContext from "../context/ShoppingContext";
 
 const Dashboard = () => {
+  const { getData } = useContext(ShoppingContext);
   const [data, setData] = useState({
     name: "",
     price: "",
@@ -75,6 +78,7 @@ const Dashboard = () => {
               // Save database
               var newProduct = database.push();
               newProduct.set(data);
+              getData();
             }
           }
         });
@@ -96,81 +100,89 @@ const Dashboard = () => {
     }, 2000);
 
   return (
-    <div className="dashboard-container">
-      <div className="dashboard form-container">
-        <p style={{ color: "red" }}>{error}</p>
-        <h1>Create Your Product</h1>
-        <form className="form" onSubmit={(e) => onSubmit(e)}>
-          <div className="form-item">
-            <label htmlFor="name">Name :</label>
-            <input
-              type="text"
-              name="name"
-              value={name}
-              onChange={(e) => onChange(e)}
-            />
-          </div>
-          <div className="form-item">
-            <label htmlFor="price">Price :</label>
-            <input
-              type="number"
-              name="price"
-              value={price}
-              onChange={(e) => onChange(e)}
-            />
-          </div>
-          <div className="form-item">
-            <label htmlFor="dec">Description :</label>
-            <textarea
-              name="dec"
-              value={dec}
-              onChange={(e) => onChange(e)}
-            ></textarea>
-          </div>
-          <div className="form-item">
-            <label htmlFor="image">Image :</label>
-            <input type="file" name="image" onChange={(e) => onChange(e)} />
-          </div>
-          <div className="form-item">
-            <input className="btn" type="submit" name="submit" value="Submit" />
-          </div>
-        </form>
-      </div>
+    <Fragment>
+      <div className="dashboard-container">
+        <div className="dashboard form-container">
+          <p style={{ color: "red" }}>{error}</p>
+          <h1>Create Your Product</h1>
+          <form className="form" onSubmit={(e) => onSubmit(e)}>
+            <div className="form-item">
+              <label htmlFor="name">Name :</label>
+              <input
+                type="text"
+                name="name"
+                value={name}
+                onChange={(e) => onChange(e)}
+              />
+            </div>
+            <div className="form-item">
+              <label htmlFor="price">Price :</label>
+              <input
+                type="number"
+                name="price"
+                value={price}
+                onChange={(e) => onChange(e)}
+              />
+            </div>
+            <div className="form-item">
+              <label htmlFor="dec">Description :</label>
+              <textarea
+                name="dec"
+                value={dec}
+                onChange={(e) => onChange(e)}
+              ></textarea>
+            </div>
+            <div className="form-item">
+              <label htmlFor="image">Image :</label>
+              <input type="file" name="image" onChange={(e) => onChange(e)} />
+            </div>
+            <div className="form-item">
+              <input
+                className="btn"
+                type="submit"
+                name="submit"
+                value="Submit"
+              />
+            </div>
+          </form>
+        </div>
 
-      {/* Preview */}
-      <div className="preview">
-        <h3>Preview your product after published </h3>
-        {file && <img src={URL.createObjectURL(file)} />}
-        {name && (
-          <p>
-            <b>Name : </b>
-            {name}
-          </p>
-        )}
-        {price && (
-          <p>
-            <b>Price : </b>${price}
-          </p>
-        )}
-        {dec && (
-          <p>
-            <b>Description : </b>
-            {dec}
-          </p>
-        )}
-        {!yesOrNo && image && name && price && dec && (
-          <div className="button" onClick={() => saveData()}>
-            Submit your product
-          </div>
-        )}
-        {yesOrNo && (
-          <div>
-            <button onClick={() => saveData()}>Yes</button>
-            <button onClick={() => deleteImage()}>No</button>
-          </div>
-        )}
+        {/* Preview */}
+        <div className="preview">
+          <h3>Preview your product after published </h3>
+          {file && <img src={URL.createObjectURL(file)} />}
+          {name && (
+            <p>
+              <b>Name : </b>
+              {name}
+            </p>
+          )}
+          {price && (
+            <p>
+              <b>Price : </b>${price}
+            </p>
+          )}
+          {dec && (
+            <p>
+              <b>Description : </b>
+              {dec}
+            </p>
+          )}
+          {!yesOrNo && image && name && price && dec && (
+            <div className="button" onClick={() => saveData()}>
+              Submit your product
+            </div>
+          )}
+          {yesOrNo && (
+            <div>
+              <button onClick={() => saveData()}>Yes</button>
+              <button onClick={() => deleteImage()}>No</button>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+      <Remove />
+    </Fragment>
   );
 };
 
