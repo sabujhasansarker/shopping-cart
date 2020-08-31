@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import ShoppingContext from "../../context/ShoppingContext";
 
 const NavBar = () => {
-  const { quantity, isAutination, getUser, logout } = useContext(
+  const { quantity, isAutination, getUser, logout, user } = useContext(
     ShoppingContext
   );
   useEffect(() => {
@@ -20,11 +20,15 @@ const NavBar = () => {
         <div className="right">
           <ul>
             <li>
-              <Link to="/shopping-cart">Home</Link>
-            </li>
-            <li>
               <Link to="/shopping-cart">Products</Link>
             </li>
+            {user &&
+              user.email === "sabujhasansarker@gmail.com" &&
+              user.emailVerified && (
+                <li>
+                  <Link to="/shopping-cart/dashboard">Dashboard</Link>
+                </li>
+              )}
             {isAutination ? (
               <li>
                 <Link to="/shopping-cart/login" onClick={() => logout()}>

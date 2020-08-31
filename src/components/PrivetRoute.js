@@ -5,7 +5,6 @@ import ShoppingContext from "../context/ShoppingContext";
 
 const PrivetRoute = ({ component: Component, ...rest }) => {
   const { isAutination } = useContext(ShoppingContext);
-  console.log(isAutination);
   return (
     <Route
       {...rest}
