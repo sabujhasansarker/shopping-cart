@@ -29,14 +29,24 @@ const Dashboard = () => {
           setData({ ...data, image: file });
           setFile(file);
         } else {
-          setError("Plz ");
+          setError("maximum file size 2mb");
+          timeOut();
         }
+      } else {
+        setError("file type png/jpeg");
+        timeOut();
       }
     }
   };
 
   // On submit
-  const onSubmit = (e) => e.preventDefault();
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!name && !price && !dec && !image) {
+      setError("plz fill all input field ");
+      timeOut();
+    }
+  };
 
   // save data
   const saveData = async () => {
@@ -80,9 +90,15 @@ const Dashboard = () => {
     setYesOrNo(false);
   };
 
+  const timeOut = () =>
+    setTimeout(() => {
+      setError();
+    }, 2000);
+
   return (
     <div className="dashboard-container">
       <div className="dashboard form-container">
+        <p style={{ color: "red" }}>{error}</p>
         <h1>Create Your Product</h1>
         <form className="form" onSubmit={(e) => onSubmit(e)}>
           <div className="form-item">

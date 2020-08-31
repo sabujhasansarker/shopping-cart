@@ -11,11 +11,10 @@ const Product = () => {
     cardItems(cards, e);
     setPrice();
   };
-
   return (
     <div className="product">
-      {items.map((item) => (
-        <div className="card" key={item.id}>
+      {items.map((item, index) => (
+        <div className="card" key={index}>
           <img className="product-img" src={item.image} alt="" />
           <div className="content">
             <Link to={`/shopping-cart/product-${item.id}`} className="name">

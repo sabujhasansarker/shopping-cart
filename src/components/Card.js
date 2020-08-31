@@ -27,8 +27,8 @@ const Card = () => {
         {cards.length > 0 ? (
           <Fragment>
             <div className="carts">
-              {cards.map((card) => (
-                <div className="cart" key={card.id}>
+              {cards.map((card, index) => (
+                <div className="cart" key={index}>
                   <img src={card.image} alt="" />
                   <div className="content">
                     <Link

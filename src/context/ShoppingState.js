@@ -50,10 +50,11 @@ const ShoppingState = ({ children }) => {
         var itemVal = item.val();
         dataItem.push(itemVal);
       });
-    });
-    dispatch({
-      type: GET_DATA,
-      payload: dataItem,
+
+      dispatch({
+        type: GET_DATA,
+        payload: dataItem,
+      });
     });
   };
 

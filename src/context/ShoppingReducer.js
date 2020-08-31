@@ -18,7 +18,7 @@ export default (state, action) => {
       return {
         ...state,
         items: payload,
-        loading: true,
+        loading: false,
       };
     case CARD_ITEMS:
       return {

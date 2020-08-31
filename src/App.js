@@ -18,10 +18,10 @@ import PrivetRoute from "./components/PrivetRoute";
 import Dashboard from "./components/Dashboard";
 
 function App() {
+  const { loading, getUser, user } = useContext(ShoppingContext);
   useEffect(() => {
     getUser();
   }, []);
-  const { loading, getUser, user } = useContext(ShoppingContext);
   return (
     <Router>
       {loading ? (
