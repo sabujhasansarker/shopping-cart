@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { store } from "../config/fire";
+import { store, database } from "../config/fire";
 
 const Dashboard = () => {
   const [data, setData] = useState({
@@ -63,6 +63,8 @@ const Dashboard = () => {
               setData({ name: "", price: "", dec: "", image: "" });
               setFile(null);
               // Save database
+              var newProduct = database.push();
+              newProduct.set(data);
             }
           }
         });
