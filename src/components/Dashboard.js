@@ -1,11 +1,11 @@
-import React, { useState, Fragment, useContext } from "react";
+import React, { useState, Fragment, useContext, useRef } from "react";
 
 import { store, database } from "../config/fire";
 import { Remove } from "./Remove";
 import ShoppingContext from "../context/ShoppingContext";
 
 const Dashboard = () => {
-  const { getData } = useContext(ShoppingContext);
+  const { getData, user } = useContext(ShoppingContext);
   const [data, setData] = useState({
     name: "",
     price: "",
@@ -68,7 +68,13 @@ const Dashboard = () => {
           if (percentage >= 100) {
             // Get url
             const url = await store.ref(file.name + math).getDownloadURL();
-            setData({ ...data, image: url, qn: 1 });
+            setData({
+              ...data,
+              image: url,
+              id: Math.floor(Math.random() * 1000000000),
+              qn: 1,
+              email: user.email,
+            });
             setYesOrNo(true);
             if (typeof image === "string") {
               // Yes or no
@@ -76,8 +82,7 @@ const Dashboard = () => {
               setData({ name: "", price: "", dec: "", image: "" });
               setFile(null);
               // Save database
-              var newProduct = database.push();
-              newProduct.set(data);
+              database.ref(`products/${data.id}`).set(data);
               getData();
             }
           }

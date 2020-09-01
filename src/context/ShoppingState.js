@@ -45,12 +45,11 @@ const ShoppingState = ({ children }) => {
 
   const getData = () => {
     const dataItem = [];
-    database.on("value", function (snap) {
+    database.ref("products/").on("value", function (snap) {
       snap.forEach(function (item) {
         var itemVal = item.val();
         dataItem.push(itemVal);
       });
-
       dispatch({
         type: GET_DATA,
         payload: dataItem,

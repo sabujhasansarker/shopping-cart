@@ -215,3 +215,16 @@ header {
     }
   }
 }
+
+table {
+  img {
+    width: 100px;
+  }
+  .table-data {
+    height: 100px;
+  }
+  td,
+  th {
+    border: 1px solid;
+  }
+}
