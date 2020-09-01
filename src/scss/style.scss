@@ -133,6 +133,9 @@ header {
 
 .single-product {
   margin-top: 50px;
+  img.product-img {
+    height: 300px;
+  }
   .card {
     border-radius: 5px;
     padding: 50px;

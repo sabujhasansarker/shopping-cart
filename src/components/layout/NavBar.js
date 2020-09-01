@@ -53,7 +53,9 @@ const NavBar = () => {
                   className="cart-img"
                   alt=""
                 />
-                <span className="card-number">{quantity}</span>
+                <span className="card-number">
+                  {quantity <= 0 ? 0 : quantity}
+                </span>
               </Link>
             </li>
           </ul>

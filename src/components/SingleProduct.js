@@ -1,22 +1,38 @@
-import React, { useContext, Fragment } from "react";
+import React, { useContext, useEffect } from "react";
 import ShoppingContext from "../context/ShoppingContext";
+import PreLoader from "./layout/PreLoader";
 
 const SingleProduct = ({ match }) => {
-  const { items, cardItems, cards, setPrice, removeItem } = useContext(
-    ShoppingContext
-  );
+  const {
+    items,
+    cardItems,
+    cards,
+    setPrice,
+    removeItem,
+    getData,
+    loading,
+  } = useContext(ShoppingContext);
+
+  useEffect(() => {
+    getData();
+  }, []);
   // On click event
   const onClick = (e) => {
     cardItems(cards, e);
     setPrice();
   };
-  const cardTrue = cards.find((card) => card.id === Number(match.params.id));
+  // console.log(match.params.id, cards);
+  if (items.length <= 0) {
+    return <PreLoader />;
+  }
+  const cardTrue =
+    cards && cards.find((card) => card.id === Number(match.params.id));
   const item =
     cardTrue || items.find((card) => card.id === Number(match.params.id));
 
   return (
     <div className="single-product">
-      <div className="card" key={item.id}>
+      <div className="card">
         <img className="product-img" src={item.image} alt="" />
         <div className="content">
           <h1>{item.name}</h1>
