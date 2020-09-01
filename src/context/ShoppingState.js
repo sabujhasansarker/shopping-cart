@@ -10,6 +10,7 @@ import {
   GET_USER,
   LOGOUT,
   GET_DATA,
+  MULTI_CARD,
 } from "./Type";
 
 // Context
@@ -63,6 +64,13 @@ const ShoppingState = ({ children }) => {
       payload: JSON.parse(localStorage.getItem("shoppingCard")),
     });
     setPrice();
+  };
+
+  const multiCard = (data) => {
+    dispatch({
+      type: MULTI_CARD,
+      payload: data,
+    });
   };
 
   const cardItems = (prvData, data, callBack) => {
@@ -148,6 +156,7 @@ const ShoppingState = ({ children }) => {
         getUser,
         logout,
         getData,
+        multiCard,
       }}
     >
       {children}
