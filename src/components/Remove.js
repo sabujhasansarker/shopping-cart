@@ -26,9 +26,15 @@ export const Remove = () => {
               </td>
               <td
                 onClick={() => {
-                  // store.ref().child(item.image).delete();
-                  // database.ref(`products/${item.id}`).remove();
-                  console.log();
+                  let splitData = item.image.split("/")[7];
+                  // splitData = splitData.include("%20") ? : splitData
+                  let indexNu = splitData.indexOf("?alt");
+                  splitData = splitData.slice(0, indexNu).split("%20");
+                  indexNu = splitData.join(" ");
+                  // let reg = /[^%20])\w+/;
+                  store.ref().child(splitData.join(" ")).delete();
+                  database.ref(`products/${item.id}`).remove();
+
                   getData();
                 }}
               >
